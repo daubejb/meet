@@ -2,6 +2,7 @@
 #  main.py
 
 import datetime
+import sys
 
 from terminal.terminal import get_user_input
 from interface.api import GoogleAPI
@@ -51,27 +52,45 @@ def main():
         except KeyError:
             attendees = 'No attendees'
 #        attachements = meeting['attachments']
-        print()
-        print('summary: {}'.format(summary))
-        print('date: {}'.format(date))
-        print('start time: {}'.format(start_time))
-        print('end time: {}'.format(end_time))
-        print('description: {}'.format(description))
-        print('location: {}'.format(location))
-        print('creator: {}'.format(creator))
-        print('organizer: {}'.format(organizer))
-        print('calendar link: {}'.format(htmlLink))
-        print('attendees:')
-        if attendees == 'No attendees':
-            print(attendees)
-        else:
-            for attendee in attendees:
-                email = attendee.get('email')
-                response_status = attendee.get('responseStatus')
-                if 'resource' not in email:
-                    print('{}: {}'.format(email, response_status))
-
-#        if args.markdown:
+        if args.markdown:
+            fsummary = '# {}\n\n'.format(summary)
+            fdate = '**Date**: {}  |  '.format(date)
+            fstart_time = '**Start time**: {}  |  '.format(start_time)
+            fend_time = '**End time**:   {}  |  '.format(end_time)
+            flocation = '**Location**:   {}\n\n'.format(location)
+            fhr = '_ _ _\n\n'
+            fnotes = '## Notes:\n\n'
+            fnote1 = '1. note\n\n'
+            fdescription = '## Description:\n\n {}\n\n'.format(description)
+            fcreator = '**Creator**: {}\n\n'.format(creator)
+            flink = 'Calendar link: {}\n\n'.format(htmlLink)
+            fattendees_header = '**Attendees**:\n\n'
+            if attendees == 'No attendees':
+                fattendees = attendees
+            else:
+                fperson = ''
+                for attendee in attendees:
+                    email = attendee.get('email')
+                    response_status = attendee.get('responseStatus')
+                    if 'resource' not in email:
+                        fperson = fperson + '{}: {}\n\n'.format(
+                            email, response_status)
+            f = open('markdown.md', 'w')
+            f.write(fsummary)
+            f.write(fdate)
+            f.write(fstart_time)
+            f.write(fend_time)
+            f.write(flocation)
+            f.write(fhr)
+            f.write(fnotes)
+            f.write(fnote1)
+            f.write(fhr)
+            f.write(fdescription)
+            f.write(fhr)
+            f.write(fcreator)
+            f.write(fattendees_header)
+            f.write(fperson)
+            f.close()
 
 if __name__ == '__main__':
     main()
