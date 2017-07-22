@@ -55,7 +55,7 @@ class GoogleAPI:
         meetingsResult = s.events().list(
             calendarId='primary',
             timeMin=now,
-            maxResults=1,
+            maxResults=20,
             singleEvents=True,
             orderBy='startTime').execute()
         meetings = meetingsResult.get('items', [])
