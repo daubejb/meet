@@ -49,7 +49,7 @@ def main():
             attendees = meeting['attendees']
         except KeyError:
             attendees = 'No attendees'
-        markdown_filename = date + summary + '.md'
+        markdown_filename = date + '-' + summary + '.md'
         if args.markdown:
             fsummary = '# {}\n\n'.format(summary)
             fdate = '**Date**: {}  |  '.format(date)
