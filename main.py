@@ -51,7 +51,7 @@ def main():
             attendees = meeting['attendees']
         except KeyError:
             attendees = 'No attendees'
-#        attachements = meeting['attachments']
+        markdown_filename = date + summary + '.md'
         if args.markdown:
             fsummary = '# {}\n\n'.format(summary)
             fdate = '**Date**: {}  |  '.format(date)
@@ -75,8 +75,9 @@ def main():
                     if 'resource' not in email:
                         fperson = fperson + '{}: {}\n\n'.format(
                             email, response_status)
-            f = open('markdown.md', 'w')
+            f = open(markdown_filename, 'w')
             f.write(fsummary)
+            f.write(fcreator)
             f.write(fdate)
             f.write(fstart_time)
             f.write(fend_time)
@@ -87,7 +88,6 @@ def main():
             f.write(fhr)
             f.write(fdescription)
             f.write(fhr)
-            f.write(fcreator)
             f.write(fattendees_header)
             f.write(fperson)
             f.close()

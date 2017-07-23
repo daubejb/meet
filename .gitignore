@@ -1,0 +1,8 @@
+.vscode/
+__init__.py
+__pycache__/
+test.json
+meet.egg-info
+*.py[cod]
+*/__pycache__/
+interface/__pycache__/
