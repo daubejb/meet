@@ -50,7 +50,6 @@ class GoogleAPI:
         '''Gets a meeting object from user calendar'''
         #  'Z' indicates UTC time
         now = datetime.datetime.utcnow().isoformat() + 'Z'
-        print('Getting the next or current event')
         s = self.service
         meetingsResult = s.events().list(
             calendarId='primary',

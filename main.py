@@ -17,15 +17,9 @@ def parse_date_time(date_time):
 def main():
     #  use terminal to parse user input
     args = get_user_input()
-    print(args)
 
-    #  get the time right
-    now = datetime.datetime.now()
-    print(now)
-    
     #  instantiate a google api object
     google_api = GoogleAPI()
-    print(google_api)
 
     #  api call to google to get a calendar object
     meetings = google_api.get_meeting()
@@ -97,5 +91,7 @@ def main():
             f.write(flink)
             f.close()
 
+        if args.google:
+            print('google it is')
 if __name__ == '__main__':
     main()
