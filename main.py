@@ -90,6 +90,7 @@ def main():
             f.write(fhr)
             f.write(fattendees_header)
             f.write(fperson)
+            f.write(flink)
             f.close()
 
 if __name__ == '__main__':
