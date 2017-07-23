@@ -19,6 +19,10 @@ def main():
     args = get_user_input()
     print(args)
 
+    #  get the time right
+    now = datetime.datetime.now()
+    print(now)
+    
     #  instantiate a google api object
     google_api = GoogleAPI()
     print(google_api)
@@ -65,10 +69,10 @@ def main():
             fcreator = '**Creator**: {}\n\n'.format(creator)
             flink = 'Calendar link: {}\n\n'.format(htmlLink)
             fattendees_header = '**Attendees**:\n\n'
+            fperson = ''
             if attendees == 'No attendees':
                 fattendees = attendees
             else:
-                fperson = ''
                 for attendee in attendees:
                     email = attendee.get('email')
                     response_status = attendee.get('responseStatus')
