@@ -63,15 +63,15 @@ def main():
                 meeting.meeting['html_link']
             ))
             f.write('**Attendees**:\n\n')
-            attendee_builder = ''
+            att_build = 'Email | Status\n\n'
             for attendee in meeting.meeting['attendees']:
                 email = attendee.get('email')
                 response_status = attendee.get('responseStatus')
                 if 'resource' not in email:
-                    attendee_builder = attendee_builder + '{}: {}\n\n'.format(
+                    att_build = att_build + '{} | {}\n\n'.format(
                         email, response_status
                     )
-            f.write(attendee_builder)
+            f.write(att_build)
             f.close()
 
     if args.google:
