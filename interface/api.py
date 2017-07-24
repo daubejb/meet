@@ -66,19 +66,13 @@ class GoogleAPI:
         meetings = meetingsResult.get('items', [])
         return meetings
 
-    def create_google_doc(self):
+    def create_google_doc(self, file_path, file_name):
         '''Write one to many meeting files to google drive'''
-        # TODO: make the meeting_dir configurable user
-        home_dir = os.path.expanduser('~')
-        meeting_dir = os.path.join(home_dir, '.meeting_pro')
-        meeting_path = os.path.join(meeting_dir,
-                                    'testfile.html')
-
         file_metadata = {
-            'name': 'Test File',
+            'name': file_name,
             'mimeType': 'application/vnd.google-apps.document'
         }
-        media = MediaFileUpload(meeting_path,
+        media = MediaFileUpload(file_path,
                                 mimetype='text/HTML')
         s = self.serviceDrive
         file = s.files().create(body=file_metadata,

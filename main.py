@@ -6,6 +6,7 @@ from terminal.terminal import get_user_input
 from interface.api import GoogleAPI
 from google.gcalendar import gCalendar
 from functions.functions import write_md_to_file
+from functions.functions import write_html_to_file
 
 
 def parse_date_time(date_time):
@@ -32,7 +33,8 @@ def main():
         write_md_to_file(gcalendar, args)
 
     if args.google:
-        google_api.create_google_doc()
+        file_path, file_name = write_html_to_file(gcalendar, args)
+        google_api.create_google_doc(file_path, file_name)
 
 if __name__ == '__main__':
     main()
