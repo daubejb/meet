@@ -15,11 +15,11 @@ def parse_date_time(date_time):
 
 
 def main():
-    #  use terminal to parse user input
-    args = get_user_input()
-
     #  instantiate a google api object
     google_api = GoogleAPI()
+
+    #  use terminal to parse user input
+    args = get_user_input()
 
     #  api call to google to get a calendar object
     meetings = google_api.get_meeting()

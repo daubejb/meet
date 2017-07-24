@@ -22,7 +22,7 @@ def get_user_input():
                                 meeting participants',
                             action='store_true',
                             dest='share')
-        parser.add_argument('-m', '--markdwon',
+        parser.add_argument('-m', '--markdown',
                             help='create a local markdown file with minutes',
                             action='store_true',
                             dest='markdown')
