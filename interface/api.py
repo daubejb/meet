@@ -7,6 +7,7 @@ from googleapiclient import discovery
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
+from googleapiclient.http import MediaFileUpload
 
 
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly',
@@ -48,13 +49,14 @@ class GoogleAPI:
             print('Storing credentials to ' + credential_path)
 
         http = credentials.authorize(httplib2.Http())
-        self.service = discovery.build('calendar', 'v3', http=http)
+        self.serviceCal = discovery.build('calendar', 'v3', http=http)
+        self.serviceDrive = discovery.build('drive', 'v3', http=http)
 
     def get_meeting(self):
         '''Gets a meeting object from user calendar'''
         #  'Z' indicates UTC time
         now = datetime.datetime.utcnow().isoformat() + 'Z'
-        s = self.service
+        s = self.serviceCal
         meetingsResult = s.events().list(
             calendarId='primary',
             timeMin=now,
@@ -65,4 +67,20 @@ class GoogleAPI:
         return meetings
 
     def create_google_doc(self):
-        pass
+        '''Write one to many meeting files to google drive'''
+        # TODO: make the meeting_dir configurable user
+        home_dir = os.path.expanduser('~')
+        meeting_dir = os.path.join(home_dir, '.meeting_pro')
+        meeting_path = os.path.join(meeting_dir,
+                                    'testfile.html')
+
+        file_metadata = {
+            'name': 'Test File',
+            'mimeType': 'application/vnd.google-apps.document'
+        }
+        media = MediaFileUpload(meeting_path,
+                                mimetype='text/HTML')
+        s = self.serviceDrive
+        file = s.files().create(body=file_metadata,
+                                media_body=media,
+                                fields='id').execute()

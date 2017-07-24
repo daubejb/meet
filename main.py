@@ -32,7 +32,7 @@ def main():
         write_md_to_file(gcalendar, args)
 
     if args.google:
-        print('google it is')
+        google_api.create_google_doc()
 
 if __name__ == '__main__':
     main()
