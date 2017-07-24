@@ -38,5 +38,6 @@ def main():
         file_path, file_name = write_html_to_file(gcalendar, args)
         file_id = google_api.create_google_doc(file_path, file_name)
         open_file_to_edit('google', file_id)
+
 if __name__ == '__main__':
     main()
