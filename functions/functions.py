@@ -5,6 +5,7 @@ import datetime
 import sys
 import os
 import os.path
+import webbrowser
 
 
 def write_md_to_file(gcalendar, args):
@@ -56,6 +57,7 @@ def write_md_to_file(gcalendar, args):
                     )
             f.write(att_build)
         f.close()
+        return final_file
 
 
 def write_html_to_file(gcalendar, args):
@@ -82,17 +84,17 @@ def write_html_to_file(gcalendar, args):
             meeting.meeting['location']
         ))
         f.write('<hr><br>')
-        f.write('<h2>Notes:</h2>\n\n1. take notes here<br>')
+        f.write('<h2>Notes:</h2>1. take notes here<br>')
         f.write('<hr><br>')
-        f.write('<br><h2>Description:</h2>\n\n{}\n\n'.format(
+        f.write('<br><h2>Description:</h2>{}<br>'.format(
             meeting.meeting['description']
         ))
-        f.write('<br><hr>\n\n<br>')
-        f.write('<br><b>Calendar link</b>: {}\n\n'.format(
+        f.write('<br><hr><br>')
+        f.write('<br><b>Calendar link</b>:<br> {}<br><br>'.format(
             meeting.meeting['html_link']
         ))
-        f.write('<b>Attendees</b>:\n\n')
-        att_build = 'Email | Status\n\n'
+        f.write('<b>Attendees</b>:<br><br>')
+        att_build = 'Email | Status<br><br>'
         attendee_check = meeting.meeting['attendees']
         if attendee_check == 'No attendees':
             f.write(attendee_check)
@@ -101,7 +103,7 @@ def write_html_to_file(gcalendar, args):
                 email = attendee.get('email')
                 response_status = attendee.get('responseStatus')
                 if 'resource' not in email:
-                    att_build = att_build + '{} | {}\n\n'.format(
+                    att_build = att_build + '{} | {}<br>'.format(
                         email, response_status
                     )
             f.write(att_build)
@@ -114,3 +116,12 @@ def create_os_nuetral_filepath(filename):
     meeting_dir = os.path.join(home_dir, '.meeting_pro')
     meeting_path = os.path.join(meeting_dir, filename)
     return meeting_path
+
+
+def open_file_to_edit(type_of_file, file_path):
+    if type_of_file == 'markdown':
+        os.system('remarkable {}'.format(file_path))
+    if type_of_file == 'google':
+        webbrowser.open('https://docs.google.com/document/d/{}'.format(
+            file_path
+        ))

@@ -78,3 +78,5 @@ class GoogleAPI:
         file = s.files().create(body=file_metadata,
                                 media_body=media,
                                 fields='id').execute()
+        response = file.get('id')
+        return response

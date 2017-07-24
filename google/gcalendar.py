@@ -58,12 +58,3 @@ class Meeting:
             self.meeting['attendees'] = 'No attendees'
 
         return
-        # self.start_date = start_date
-        # self.end_date = end_date
-        # self.start_time = start_time
-        # self.end_time = end_time
-        # self.location = location
-        # self.description = description
-        # self.creator = creator
-        # self.html_link = html_link
-        # self.attendees = []

@@ -7,6 +7,7 @@ from interface.api import GoogleAPI
 from google.gcalendar import gCalendar
 from functions.functions import write_md_to_file
 from functions.functions import write_html_to_file
+from functions.functions import open_file_to_edit
 
 
 def parse_date_time(date_time):
@@ -30,11 +31,12 @@ def main():
     gcalendar.new_meeting(meetings)
 
     if args.markdown:
-        write_md_to_file(gcalendar, args)
+        md_path = write_md_to_file(gcalendar, args)
+        open_file_to_edit('markdown', md_path)
 
     if args.google:
         file_path, file_name = write_html_to_file(gcalendar, args)
-        google_api.create_google_doc(file_path, file_name)
-
+        file_id = google_api.create_google_doc(file_path, file_name)
+        open_file_to_edit('google', file_id)
 if __name__ == '__main__':
     main()
