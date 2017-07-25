@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='meet',
-    version='1.2.3',
+    version='1.2.4',
     author='Jeffrey B. Daube',
     author_email='daubejb@gmail.com',
     packages=find_packages(),
@@ -21,7 +21,7 @@ setup(
         ],
     entry_points={
         'console_scripts': [
-            'meet=meet:main',
+            'meet=meet.meet:main',
         ],
     },
     classifiers=[
