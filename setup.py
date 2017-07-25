@@ -29,7 +29,7 @@ setup(
     classifiers=[
         'Development Status :: 4 - Beta',
         'Programming Language :: Python :: 3.5',
-        'Environment "" Console',
+        'Environment :: Console',
         'Intended Audience :: End Users/Desktop',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
