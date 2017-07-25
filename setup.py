@@ -34,9 +34,7 @@ setup(
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
         'License :: OSI Approved :: MIT License',
-        'Operating System :: Linux',
-        'Operating System :: Microsoft :: Windows',
-        'Operating System :: MacOS :: MacOS',
+        'Operating System :: OS Independent',
         'Topic :: Communications :: Meeting Notes',
         'Topic :: Productivity'
         'Topic :: Efficiency'
