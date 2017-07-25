@@ -35,8 +35,9 @@ setup(
         'Intended Audience :: System Administrators',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Topic :: Communications :: Meeting Notes',
-        'Topic :: Productivity'
-        'Topic :: Efficiency'
+        'Topic :: Communications',
+        'Topic :: Terminals',
+        'Topic :: Office/Business',
+        'Topic :: Utilities'
         ],
     )
