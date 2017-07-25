@@ -2,12 +2,12 @@
 #  main.py
 
 
-from terminal.terminal import get_user_input
-from interface.api import GoogleAPI
-from google.gcalendar import gCalendar
-from functions.functions import write_md_to_file
-from functions.functions import write_html_to_file
-from functions.functions import open_file_to_edit
+from meet.terminal.terminal import get_user_input
+from meet.interface.api import GoogleAPI
+from meet.google.gcalendar import gCalendar
+from meet.functions.functions import write_md_to_file
+from meet.functions.functions import write_html_to_file
+from meet.functions.functions import open_file_to_edit
 
 
 def main():

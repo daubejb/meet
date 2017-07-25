@@ -10,7 +10,7 @@ import webbrowser
 
 def write_md_to_file(gcalendar, args):
     for meeting in gcalendar.meetings:
-        markdown_filename = '{} - {}.md.format(
+        markdown_filename = '{} - {}.md'.format(
             meeting.meeting['start_date'],
             meeting.meeting['summary'])
         hr = '_ _ _\n\n'
