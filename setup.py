@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='meet',
-    version='1.2.1',
+    version='1.2.2',
     author='Jeffrey B. Daube',
     author_email='daubejb@gmail.com',
     packages=find_packages(),
@@ -16,7 +16,7 @@ setup(
     choice',
     keywords='meeting notes generator google docs markdown daube design',
     install_requires=[
-        'oauth2client',
+        'oauth2client>=1.5.0',
         'google-api-python-client',
         ],
     entry_points={
