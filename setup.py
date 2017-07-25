@@ -11,7 +11,6 @@ setup(
     include_package_data=True,
     zip_safe=False,
     url="http://www.github.com/daubejb/meet",
-    download_url='https://github.com/daubejb/meet/archive/0.1/tar/gz',
     description='A simple cli utility to create a meeting notes document in \
     either a google doc on google drive or in markdown in your directory of \
     choice',
