@@ -21,7 +21,7 @@ setup(
         ],
     entry_points={
         'console_scripts': [
-            'meet=main:main',
+            'meet=meet:main',
         ],
     },
     classifiers=[
