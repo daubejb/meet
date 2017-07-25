@@ -7,7 +7,7 @@ setup(
     author='Jeffrey B. Daube',
     author_email='daubejb@gmail.com',
     packages=find_packages(),
-    licenses='MIT license',
+    license='MIT license',
     include_package_data=True,
     zip_safe=False,
     url="http://www.github.com/daubejb/meet",
