@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#  calendar.py
+#  gcalendar.py
 
 
 class gCalendar:

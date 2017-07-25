@@ -10,7 +10,7 @@ import webbrowser
 
 def write_md_to_file(gcalendar, args):
     for meeting in gcalendar.meetings:
-        markdown_filename = '\'{} - {}.md\''.format(
+        markdown_filename = '{} - {}.md.format(
             meeting.meeting['start_date'],
             meeting.meeting['summary'])
         hr = '_ _ _\n\n'
@@ -120,7 +120,7 @@ def create_os_nuetral_filepath(filename):
 
 def open_file_to_edit(type_of_file, file_path):
     if type_of_file == 'markdown':
-        os.system('remarkable {}'.format(file_path))
+        os.system('remarkable \'{}\''.format(file_path))
     if type_of_file == 'google':
         webbrowser.open('https://docs.google.com/document/d/{}'.format(
             file_path
