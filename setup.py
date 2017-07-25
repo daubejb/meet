@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='meet',
-    version='1.1',
+    version='1.0',
     author='Jeffrey B. Daube',
     author_email='daubejb@gmail.com',
     packages=find_packages(),
