@@ -33,8 +33,6 @@ setup(
         'Intended Audience :: System Administrators',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Topic :: Communications',
-        'Topic :: Terminals',
         'Topic :: Office/Business',
         'Topic :: Utilities'
         ],
