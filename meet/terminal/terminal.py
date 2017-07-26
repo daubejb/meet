@@ -28,6 +28,8 @@ def get_user_input():
         #                     action='store_true',
         #                     dest='share')
         args = parser.parse_args()
+        if not args.google and not args.markdown:
+            parser.print_help()
         return args
     except ImportError:
         flags = None
