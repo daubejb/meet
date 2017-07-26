@@ -42,7 +42,7 @@ class AppConf:
             config.set(
                 'setup',
                 'client_secret_file_name',
-                'meet_client_secret.JSON'
+                'meet_client_secret.json'
             )
             config.set(
                 'setup',
