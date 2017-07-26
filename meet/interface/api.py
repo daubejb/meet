@@ -9,16 +9,13 @@ from oauth2client import tools
 from oauth2client.file import Storage
 from googleapiclient.http import MediaFileUpload
 
-
-SCOPES = ['https://www.googleapis.com/auth/calendar.readonly',
-          'https://www.googleapis.com/auth/drive']
-CLIENT_SECRET_FILE = '/home/jedaube/meet/interface/meet_client_secret.json'
 APPLICATION_NAME = 'Meeting Pro'
+HOME_DIR = os.path.expanduser('~')
 
 
 class GoogleAPI:
 
-    def __init__(self):
+    def __init__(self, app_conf):
         '''Instantiates a google api'''
 
         """Gets valid user credentials from storage.
@@ -29,17 +26,24 @@ class GoogleAPI:
         Returns:
         Credentials, the obtained credential.
         """
-        home_dir = os.path.expanduser('~')
-        credential_dir = os.path.join(home_dir, '.credentials')
+        scopes = ['https://www.googleapis.com/auth/calendar.readonly',
+                  'https://www.googleapis.com/auth/drive']
+        client_secret_file_name = app_conf.configs['client_secret_file_name']
+        client_secret_file_path = os.path.join(
+            app_conf.configs['client_secret_file_location'],
+            client_secret_file_name
+        )
+        credential_dir = os.path.join(HOME_DIR, '.credentials')
         if not os.path.exists(credential_dir):
             os.makedirs(credential_dir)
         credential_path = os.path.join(credential_dir,
-                                       'meet_client_secret.json')
+                                       client_secret_file_name)
 
         store = Storage(credential_path)
         credentials = store.get()
         if not credentials or credentials.invalid:
-            flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
+            flow = client.flow_from_clientsecrets(client_secret_file_path,
+                                                  scopes)
             flow.user_agent = APPLICATION_NAME
             flags = tools.argparser.parse_args(args=[])
             if flags:

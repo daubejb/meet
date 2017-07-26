@@ -8,11 +8,15 @@ from meet.google.gcalendar import gCalendar
 from meet.functions.functions import write_md_to_file
 from meet.functions.functions import write_html_to_file
 from meet.functions.functions import open_file_to_edit
+from meet.config.config import AppConf
 
 
 def main():
+    # check for an existing configuration file
+    app_conf = AppConf()
+
     #  instantiate a google api object
-    google_api = GoogleAPI()
+    google_api = GoogleAPI(app_conf)
 
     #  use terminal to parse user input
     args = get_user_input()
