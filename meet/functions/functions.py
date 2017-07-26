@@ -118,6 +118,26 @@ def create_os_nuetral_filepath(filename):
     return meeting_path
 
 
+def check_for_client_secret(app_conf):
+    home_dir = os.path.expanduser('~')
+    client_secret_dir = os.path.join(
+        home_dir,
+        app_conf.configs['client_secret_file_location']
+    )
+    if not os.path.exists(client_secret_dir):
+        os.makedirs(client_secret_dir)
+
+    client_secret_file = os.path.join(
+        client_secret_dir,
+        app_conf.configs['client_secret_file_name']
+    )
+    if not os.path.exists(client_secret_file):
+        cs_status = False
+    else:
+        cs_status = True
+    return cs_status
+
+
 def open_file_to_edit(type_of_file, file_path, app_conf):
     if type_of_file == 'markdown':
         os.system('{} \'{}\''.format(
@@ -129,3 +149,8 @@ def open_file_to_edit(type_of_file, file_path, app_conf):
         webbrowser.open('https://docs.google.com/document/d/{}'.format(
             file_path
         ))
+
+
+def launch_readme_in_browser():
+    webbrowser.open('https://github.com/daubejb/meet')
+    sys.exit()

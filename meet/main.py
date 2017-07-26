@@ -8,12 +8,22 @@ from meet.google.gcalendar import gCalendar
 from meet.functions.functions import write_md_to_file
 from meet.functions.functions import write_html_to_file
 from meet.functions.functions import open_file_to_edit
+from meet.functions.functions import check_for_client_secret
+from meet.functions.functions import launch_readme_in_browser
 from meet.config.config import AppConf
 
 
 def main():
     # check for an existing configuration file
     app_conf = AppConf()
+
+    # check to see if user has their own client secret for google api
+    cs_status = check_for_client_secret(app_conf)
+    if not cs_status:
+        print('Please see the README.md file to setup your Google oauth 2.0\n' +
+              'credentials.  Follow the setup instructions, then launch the\n' +
+              'application again.')
+        launch_readme_in_browser()
 
     #  instantiate a google api object
     google_api = GoogleAPI(app_conf)
