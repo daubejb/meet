@@ -11,7 +11,7 @@ def main():
 def get_user_input():
     try:
         parser = argparse.ArgumentParser(description='a cli application to \
-                create a meeting notes google doc or local markdown file \
+                create a meeting notes google doc or local markdown file for a \
                 current or impending meeting on your google calendar')
         group = parser.add_mutually_exclusive_group()
         group.add_argument('-g', '--google',
@@ -22,11 +22,11 @@ def get_user_input():
                            help='create a local markdown file with minutes',
                            action='store_true',
                            dest='markdown')
-        parser.add_argument('-s', '--share',
-                            help='automatically share the google doc with \
-                                meeting participants',
-                            action='store_true',
-                            dest='share')
+        # parser.add_argument('-s', '--share',
+        #                     help='automatically share the google doc with \
+        #                         meeting participants',
+        #                     action='store_true',
+        #                     dest='share')
         args = parser.parse_args()
         return args
     except ImportError:

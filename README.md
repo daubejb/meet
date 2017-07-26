@@ -5,6 +5,22 @@ This is a command line utility to create meeting notes from your Google Calendar
 1. **Generates** a _meeting notes_ document from your current meeting, if one is occuring, or your next meeting on your Google calendar
 2. **Create** a _markdown formatted file_ on you local machine OR a _Google Document_
 
+Usage
+=====
+
+```bash
+usage: m [-h] [-g | -m]
+
+a cli application to create a meeting notes Google Doc or local markdown file for a current or an impending meeting on your Google Calendar
+
+optional arguments:
+  
+    -h, --help      show this help message and exit
+    -g, --google    create a new google doc with minutes
+    -m, --markdown  create a local markdown file with minutes
+
+```
+
 Installation
 ============
 
