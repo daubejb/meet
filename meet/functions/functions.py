@@ -8,7 +8,7 @@ import os.path
 import webbrowser
 
 
-def write_md_to_file(gcalendar, args):
+def write_md_to_file(gcalendar, args, app_conf):
     for meeting in gcalendar.meetings:
         markdown_filename = '{} - {}.md'.format(
             meeting.meeting['start_date'],
@@ -16,7 +16,7 @@ def write_md_to_file(gcalendar, args):
         hr = '_ _ _\n\n'
         chars_to_remove = dict((ord(char), None) for char in '\\/*?:"<>|')
         clean_md_filename = markdown_filename.translate(chars_to_remove)
-        final_file = create_os_nuetral_filepath(clean_md_filename)
+        final_file = create_os_nuetral_filepath(clean_md_filename, app_conf)
         f = open(final_file, 'w')
         f.write('# {}\n\n'.format(meeting.meeting['summary']))
         f.write('**Organizer**: {}\n\n'.format(
@@ -60,7 +60,7 @@ def write_md_to_file(gcalendar, args):
         return final_file
 
 
-def write_html_to_file(gcalendar, args):
+def write_html_to_file(gcalendar, args, app_conf):
     for meeting in gcalendar.meetings:
         html_filename = '{} - {}'.format(
             meeting.meeting['start_date'],
@@ -68,7 +68,7 @@ def write_html_to_file(gcalendar, args):
         )
         chars_to_remove = dict((ord(char), None) for char in '\\/*?:"<>|')
         file_name = html_filename.translate(chars_to_remove)
-        file_path = create_os_nuetral_filepath(file_name)
+        file_path = create_os_nuetral_filepath(file_name, app_conf)
         f = open(file_path, 'w')
         f.write('<h1>{}</h1>'.format(meeting.meeting['summary']))
         f.write('<hr><br>')
@@ -111,9 +111,11 @@ def write_html_to_file(gcalendar, args):
         return file_path, file_name
 
 
-def create_os_nuetral_filepath(filename):
+def create_os_nuetral_filepath(filename, app_conf):
     home_dir = os.path.expanduser('~')
-    meeting_dir = os.path.join(home_dir, '.meeting_pro')
+    meeting_dir = os.path.join(
+        home_dir, 
+        app_conf.configs['meeting_notes_folder'])
     meeting_path = os.path.join(meeting_dir, filename)
     return meeting_path
 
@@ -138,6 +140,16 @@ def check_for_client_secret(app_conf):
     return cs_status
 
 
+def check_for_meeting_notes_folder(app_conf):
+    home_dir = os.path.expanduser('~')
+    meeting_notes_dir = os.path.join(
+        home_dir,
+        app_conf.configs['meeting_notes_folder']
+    )
+    if not os.path.exists(meeting_notes_dir):
+        os.makedirs(meeting_notes_dir)
+
+
 def open_file_to_edit(type_of_file, file_path, app_conf):
     if type_of_file == 'markdown':
         os.system('{} \'{}\''.format(
@@ -149,6 +161,15 @@ def open_file_to_edit(type_of_file, file_path, app_conf):
         webbrowser.open('https://docs.google.com/document/d/{}'.format(
             file_path
         ))
+
+
+def open_in_markdown_editor(app_conf):
+    open_setting = app_conf.configs['open_markdown_editor']
+    open_setting.lower()
+    if open_setting == 'true':
+        return True
+    else:
+        return False
 
 
 def launch_readme_in_browser():

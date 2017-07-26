@@ -11,6 +11,7 @@ home_dir = os.path.expanduser('~')
 config_dir = os.path.join(home_dir, '.config')
 configfile_name = os.path.join(config_dir, 'meet_config.ini')
 client_secret_file_location = os.path.join(config_dir)
+notes_folder = os.path.join(home_dir, 'meeting_notes')
 
 
 class AppConf:
@@ -20,6 +21,7 @@ class AppConf:
 
     def __init__(self):
         # Determine what system platform is in use
+        self.notes_folder = notes_folder
         if sys.platform.startswith('linux'):
             self.basic_editor = 'vi'
         elif sys.platform == 'win32' or sys.platform == 'cygwin':
@@ -59,6 +61,11 @@ class AppConf:
                 'options',
                 'editor_cli_command',
                 self.basic_editor
+            )
+            config.set(
+                'options',
+                'meeting_notes_folder',
+                self.notes_folder
             )
             config.write(cfgfile)
             cfgfile.close()
