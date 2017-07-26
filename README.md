@@ -11,7 +11,8 @@ Usage
 ```bash
 usage: m [-h] [-g | -m]
 
-a cli application to create a meeting notes Google Doc or local markdown file for a current or an impending meeting on your Google Calendar
+a cli application to create a meeting notes Google Doc or local markdown file
+for a current or an impending meeting on your Google Calendar
 
 meeting notes arguments:
     -h, --help      show this help message and exit
