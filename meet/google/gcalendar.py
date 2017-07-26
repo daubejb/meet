@@ -25,11 +25,17 @@ class Meeting:
         self.meeting = {
             'id': meeting['id'],
             'summary': meeting['summary'],
-            'start_date': meeting['start'].get('dateTime')[:10],
-            'end_date': meeting['end'].get('dateTime')[:10],
             'organizer': meeting['organizer'].get('email'),
             'html_link': meeting['htmlLink'],
         }
+        try:
+            self.meeting['start_date'] = meeting['start'].get('dateTime')[:10]
+        except TypeError:
+            self.meeting['start_date'] = meeting['start'].get('date')[:10]
+        try:
+            self.meeting['end_date'] = meeting['end'].get('dateTime')[:10]
+        except TypeError:
+            self.meeting['end_date'] = meeting['end'].get('date')[:10]
         try:
             self.meeting['start_time'] = meeting['start'].get(
                 'dateTime')[11:16]
