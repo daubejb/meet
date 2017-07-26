@@ -13,6 +13,7 @@ def get_user_input():
         parser = argparse.ArgumentParser(description='a cli application to \
                 create a meeting notes google doc or local markdown file for a \
                 current or impending meeting on your google calendar')
+        parser._optionals.title = 'meeting notes arguments'
         group = parser.add_mutually_exclusive_group()
         group.add_argument('-g', '--google',
                            help='create a new google doc with minutes',

@@ -13,8 +13,7 @@ usage: m [-h] [-g | -m]
 
 a cli application to create a meeting notes Google Doc or local markdown file for a current or an impending meeting on your Google Calendar
 
-optional arguments:
-  
+meeting notes arguments:
     -h, --help      show this help message and exit
     -g, --google    create a new google doc with minutes
     -m, --markdown  create a local markdown file with minutes
