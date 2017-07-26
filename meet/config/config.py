@@ -1,6 +1,7 @@
 #!/bin/usr/python
 # config.py
 
+import sys
 import os
 import os.path
 
@@ -18,6 +19,15 @@ class AppConf:
     consume the latest configurations upon app load'''
 
     def __init__(self):
+        # Determine what system platform is in use
+        if sys.platform.startswith('linux'):
+            self.basic_editor = 'vi'
+        elif sys.platform == 'win32' or sys.platform == 'cygwin':
+            self.basic_editor = 'edit'
+        elif sys.platform == 'darwin':
+            self.basic_editor = 'vi'
+        else:
+            self.basic_editor = 'vi'
         self.check_for_config_file()
         self.configs = self.get_configurations()
 
@@ -32,11 +42,24 @@ class AppConf:
             config.set(
                 'setup',
                 'client_secret_file_name',
-                'meet_client_secret.JSON')
+                'meet_client_secret.JSON'
+            )
             config.set(
                 'setup',
                 'client_secret_file_location',
-                client_secret_file_location)
+                client_secret_file_location
+            )
+            config.add_section('options')
+            config.set(
+                'options',
+                'open_markdown_editor',
+                'true'
+            )
+            config.set(
+                'options',
+                'editor_cli_command',
+                self.basic_editor
+            )
             config.write(cfgfile)
             cfgfile.close()
             print('\nA configuration file was created with default values\n')

@@ -118,9 +118,13 @@ def create_os_nuetral_filepath(filename):
     return meeting_path
 
 
-def open_file_to_edit(type_of_file, file_path):
+def open_file_to_edit(type_of_file, file_path, app_conf):
     if type_of_file == 'markdown':
-        os.system('remarkable \'{}\''.format(file_path))
+        os.system('{} \'{}\''.format(
+            app_conf.configs['editor_cli_command'],
+            file_path
+            )
+        )
     if type_of_file == 'google':
         webbrowser.open('https://docs.google.com/document/d/{}'.format(
             file_path

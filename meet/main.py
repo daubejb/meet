@@ -30,7 +30,7 @@ def main():
 
     if args.markdown:
         md_path = write_md_to_file(gcalendar, args)
-        open_file_to_edit('markdown', md_path)
+        open_file_to_edit('markdown', md_path, app_conf)
 
     # if args.google and args.share:
     #     pass
@@ -38,7 +38,7 @@ def main():
     if args.google:
         file_path, file_name = write_html_to_file(gcalendar, args)
         file_id = google_api.create_google_doc(file_path, file_name)
-        open_file_to_edit('google', file_id)
+        open_file_to_edit('google', file_id, app_conf)
 
 
 if __name__ == '__main__':
